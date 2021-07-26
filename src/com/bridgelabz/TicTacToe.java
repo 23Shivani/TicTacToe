@@ -3,33 +3,40 @@ package com.bridgelabz;
 import java.util.Scanner;
 
 public class TicTacToe {	
-	public static void main(String[] args) {
-	createBored();
-	userChoice();
-}
-public static void createBored() {
-	char [] bored = new char [9];
-	for (int i= 0;i < 9;i++) {
-		bored[i] = '-';
-	}
-}
-public static void userChoice() {
-	char player = ' ';
-	char computer = ' ';
 	
-	Scanner s = new Scanner(System.in);
-	System.out.println("Choose a Letter 1.X or 2.O :");
-	int userInput = s.nextInt();
-	switch (userInput) {
-	case 1 :
-		player = 'X';
-		System.out.println("You have Taken Letter : " + player);
-		break;
-	case 2 :
-		computer = 'O';
-		System.out.println("You have Taken Letter : " + computer);
-		break;
+public static void main(String[] args) {
+		
+		createBoard();
+		Scanner userInput = new Scanner(System.in);
+		char userLetter = userChoice(userInput);
+		char player = ' ';
+		char computer = ' ';
+		
+		if (userLetter == 'X') {
+			player = 'X';
+			computer = 'O';
+			System.out.println("You have Taken Letter : "+player);
+		}
+		else if (userLetter == 'Y') {
+			player = 'O';
+			computer = 'X';
+			System.out.println("You have Taken Letter : "+computer);
+		}
+		else {
+			System.out.println("Invalid Input");
+		}
 	}
-s.close();
-}
+	public static void createBoard() {
+		int [] bored = new int [9];
+		for (int i= 0;i < 9;i++) {
+			bored[i] = i+1 ;
+		}
+		System.out.println(bored[0]+"|"+bored[1]+"|"+bored[2]);
+		System.out.println(bored[3]+"|"+bored[4]+"|"+bored[5]);
+		System.out.println(bored[6]+"|"+bored[7]+"|"+bored[8]);
+	}
+	private static char userChoice(Scanner userInput) {
+		System.out.println("Choose a Letter X or O :");
+		return userInput.next().toUpperCase().charAt(0);
+	}
 }
